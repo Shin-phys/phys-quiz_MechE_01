@@ -1,0 +1,21 @@
+[
+    {
+        "id": "phys_001",
+        "tags": [
+            "力学",
+            "摩擦"
+        ],
+        "prompt": "傾角 $\\theta$ の斜面で静止する質量 $m$ の物体に働く摩擦力 $f$ は？",
+        "figure": "assets/img/p001.png",
+        "choices": [
+            "$mg \\sin \\theta$",
+            "$mg \\cos \\theta$",
+            "$\\mu mg \\cos \\theta$",
+            "$0$"
+        ],
+        "correctIndex": 0,
+        "answerLatex": "f = mg \\sin \\theta",
+        "point": "静止摩擦力は、滑らせようとする力（重力の成分）とつり合っています。",
+        "figure_instruction": "斜面、物体、重力の分解点線、角度thetaを明示すること"
+    }
+]

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Antigravity</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- Start Screen overlay -->
+    <div id="start-screen" class="overlay-screen">
+      <h1 class="title-large">Physics Antigravity</h1>
+      <div class="mode-select">
+        <button id="btn-practice" class="mode-btn">Practice Mode</button>
+        <button id="btn-test" class="mode-btn">Test Mode</button>
+      </div>
+    </div>
+
+    <!-- Results Screen overlay -->
+    <div id="results-screen" class="overlay-screen hidden">
+      <h2 class="result-title">Test Complete</h2>
+      <div id="score-display" class="score-display"></div>
+      <div id="review-list" class="review-list"></div>
+      <button id="btn-restart" class="action-btn">Topへ戻る</button>
+    </div>
+
+    <!-- 左カラム: 問題・選択肢・解説 -->
+    <div class="left-panel">
+      <div class="header-area">
+        <h1 class="app-title">Antigravity</h1>
+        <div class="mode-indicator" id="mode-display">Practice Mode</div>
+      </div>
+
+      <div class="question-container">
+        <div id="question-text" class="markdown-body"></div>
+      </div>
+
+      <div class="choices-container" id="choices-area">
+        <!-- 4択ボタンが動的に挿入されます -->
+      </div>
+
+      <div id="feedback-area" class="feedback-container hidden">
+        <div class="result-icon" id="result-icon"></div>
+        <div class="explanation">
+          <div id="correct-answer-math"></div>
+          <p id="explanation-text"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 右カラム -->
+    <div class="right-panel">
+      <div class="canvas-wrapper" id="canvas-wrapper">
+        <div id="figure-container">
+          <div id="figure-placeholder" class="figure-placeholder">Figure Area</div>
+          <img id="figure-img" class="figure-img hidden" alt="Physics Figure" />
+        </div>
+        <canvas id="drawing-canvas"></canvas>
+      </div>
+
+      <div class="toolbar">
+        <button id="tool-pen-black" class="tool-btn active" title="黒ペン">✏️ 黒</button>
+        <button id="tool-pen-red" class="tool-btn" title="赤ペン">✏️ 赤</button>
+        <button id="tool-eraser" class="tool-btn" title="消しゴム">🧹</button>
+        <div class="divider"></div>
+        <button id="tool-undo" class="tool-btn" title="元に戻す">↩️</button>
+        <button id="tool-clear" class="tool-btn" title="全消去">🗑️</button>
+        <div class="divider"></div>
+        <button id="toggle-drawing" class="tool-btn active" title="描画ON/OFF">Draw: ON</button>
+      </div>
+    </div>
+
+    <div id="progress-bar" class="progress-bar"></div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
