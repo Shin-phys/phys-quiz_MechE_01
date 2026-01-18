@@ -1,6 +1,5 @@
-import './style.css';
-import katex from 'katex';
-import 'katex/dist/katex.min.css';
+const { katex } = window;
+const publicBaseUrl = new URL('public/', window.location.href);
 
 const state = {
   questions: [],
@@ -56,7 +55,7 @@ async function init() {
 
 async function loadQuestions() {
   try {
-    const response = await fetch('/questions.json'); // Vite serves files in 'public' at root
+    const response = await fetch(new URL('questions.json', publicBaseUrl));
     state.questions = await response.json();
   } catch (e) {
     console.error('Failed to load questions', e);
@@ -104,7 +103,7 @@ function renderQuestion() {
   });
 
   if (q.figure) {
-    dom.figureImg.src = q.figure;
+    dom.figureImg.src = new URL(q.figure, publicBaseUrl).toString();
     dom.figureImg.classList.remove('hidden');
     dom.figurePlaceholder.classList.add('hidden');
     dom.figureImg.onerror = () => {
@@ -145,6 +144,7 @@ function renderExplanation(q) {
 
 function renderMath(text) {
   if (!text) return '';
+  if (!katex) return text;
   return text.replace(/\$([^$]+)\$/g, (match, formula) => {
     try {
       return katex.renderToString(formula, { throwOnError: false });
