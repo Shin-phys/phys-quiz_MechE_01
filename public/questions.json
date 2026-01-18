@@ -14,7 +14,7 @@
             "$0$"
         ],
         "correctIndex": 0,
-        "answerLatex": "f = mg \\sin \\theta",
+        "answerLatex": "$f = mg \\sin \\theta"$,
         "point": "静止摩擦力は、滑らせようとする力（重力の成分）とつり合っています。",
         "figure_instruction": "斜面、物体、重力の分解点線、角度thetaを明示すること"
     }
