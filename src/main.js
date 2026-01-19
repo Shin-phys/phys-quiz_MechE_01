@@ -1,4 +1,3 @@
-const publicBaseUrl = new URL(import.meta.env.BASE_URL, window.location.href);
 let questionsPromise = null;
 
 const state = {
@@ -6,6 +5,7 @@ const state = {
   currentQuestionIndex: 0,
   answers: {}, // { questionId: { isCorrect, selectedIndex, timestamp, errorTag } }
   mode: 'practice', // 'practice' | 'test'
+  assetsBaseUrl: new URL('.', window.location.href),
   drawing: {
     isDrawing: false,
     tool: 'pen',
@@ -56,18 +56,25 @@ async function init() {
 async function loadQuestions() {
  if (questionsPromise) return questionsPromise;
   questionsPromise = (async () => {
-    try {
-      const response = await fetch(new URL('questions.json', publicBaseUrl));
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
+    const candidateUrls = [
+      new URL('questions.json', window.location.href),
+      new URL('public/questions.json', window.location.href)
+    ];
+    for (const url of candidateUrls) {
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+        state.questions = await response.json();
+        state.assetsBaseUrl = new URL('.', url);
+        return state.questions;
+      } catch (e) {
+        console.warn(`Failed to load questions from ${url}`, e);
       }
-      state.questions = await response.json();
-      return state.questions;
-    } catch (e) {
-      console.error('Failed to load questions', e);
-      state.questions = [];
-      return [];
-    }
+      }
+     state.questions = [];
+     return [];
   })();
   return questionsPromise;
 }
@@ -126,7 +133,7 @@ function renderQuestion() {
   });
 
   if (q.figure) {
-    dom.figureImg.src = new URL(q.figure, publicBaseUrl).toString();
+    dom.figureImg.src = new URL(q.figure, state.assetsBaseUrl).toString();
     dom.figureImg.classList.remove('hidden');
     dom.figurePlaceholder.classList.add('hidden');
     dom.figureImg.onerror = () => {
