@@ -1,5 +1,89 @@
 [
   {
+    "id": "phys_001",
+    "tags": ["物理基礎", "力学的エネルギー"],
+    "prompt": "質量 $m[\\text{kg}]$、速度 $v[\\text{m/s}]$、高さ $h$、ばね定数 $k$ とする。力学的エネルギー $E$ の定義式はどれか。",
+    "figure": "none",
+    "choices": [
+      "$\\frac{1}{2}mv^2 + mgh + \\frac{1}{2}kx^2$",
+      "$mv^2 + mgh + kx^2$",
+      "$\\frac{1}{2}mv^2 + mgh + kx$",
+      "$\\frac{1}{2}mv^2 + mg + \\frac{1}{2}kx^2$"
+    ],
+    "correctIndex": 0,
+    "answerLatex": "\\frac{1}{2}mv^2 + mgh + \\frac{1}{2}kx^2",
+    "point": "力学的エネルギーは運動エネルギー・重力による位置エネルギー・ばねの弾性エネルギーの和で定義される。",
+    "figure_instruction": "物体、速度v、高さh、ばねの伸びxをそれぞれ示す模式図"
+  },
+  {
+    "id": "phys_002",
+    "tags": ["物理基礎", "力学的エネルギー"],
+    "prompt": "ばねの伸び $x$、速さ $v$ の物体がもつ力学的エネルギーはどれか。",
+    "figure": "none",
+    "choices": [
+      "$\\frac{1}{2}mv^2 + \\frac{1}{2}kx^2$",
+      "$mv^2 + kx^2$",
+      "$\\frac{1}{2}mv^2 + \\frac{1}{2}kx$",
+      "$\\frac{1}{2}mv^2 + kx^2$"
+    ],
+    "correctIndex": 0,
+    "answerLatex": "\\frac{1}{2}mv^2 + \\frac{1}{2}kx^2",
+    "point": "重力による位置エネルギーが関与しない場合でも、運動エネルギーとばねの弾性エネルギーは考慮する。",
+    "figure_instruction": "水平ばねと物体、伸びxと速度vを示す図"
+  },
+  {
+    "id": "phys_003",
+    "tags": ["物理基礎", "力学的エネルギー"],
+    "prompt": "速さ $v$ の物体がもつ運動エネルギーの式はどれか。",
+    "figure": "none",
+    "choices": [
+      "$\\frac{1}{2}mv^2$",
+      "$mv^2$",
+      "$\\frac{1}{2}mv$",
+      "$\\frac{1}{2}m^2v^2$"
+    ],
+    "correctIndex": 0,
+    "answerLatex": "\\frac{1}{2}mv^2",
+    "point": "運動エネルギーは速度の2乗に比例し、必ず 1/2 が付くことに注意する。",
+    "figure_instruction": "質量mの物体が速度vで運動している図"
+  },
+
+  {
+    "id": "phys_004",
+    "tags": ["物理基礎", "力学的エネルギー"],
+    "prompt": "高さ $h$、速さ $v$ の物体がもつ力学的エネルギーはどれか。",
+    "figure": "none",
+    "choices": [
+      "$\\frac{1}{2}mv^2 + mgh$",
+      "$mv^2 + mgh$",
+      "$\\frac{1}{2}mv^2 + mg$",
+      "$\\frac{1}{2}mv^2 - mgh$"
+    ],
+    "correctIndex": 0,
+    "answerLatex": "\\frac{1}{2}mv^2 + mgh",
+    "point": "高さが与えられている場合、重力による位置エネルギー mgh を必ず含める。",
+    "figure_instruction": "高さhの位置にある物体と地面を示す図"
+  },
+
+  {
+    "id": "phys_005",
+    "tags": ["物理基礎", "力学的エネルギー"],
+    "prompt": "質量2.0kg、速さ5.0m/sの物体に24Jの仕事をした。仕事とエネルギーの関係式はどれか。",
+    "figure": "none",
+    "choices": [
+      "$\\frac{1}{2} \\cdot 2.0 \\cdot 5.0^2 + 24 = \\frac{1}{2} \\cdot 2.0 \\cdot v^2$",
+      "$\\frac{1}{2} \\cdot 2.0 \\cdot 5.0^2 - 24 = \\frac{1}{2} \\cdot 2.0 \\cdot v^2$",
+      "$\\frac{1}{2} \\cdot 2.0 \\cdot 5.0 + 24 = \\frac{1}{2} \\cdot 2.0 \\cdot v^2$",
+      "$\\frac{1}{2} \\cdot 2.0 \\cdot 5.0^2 + 24 = 2.0v^2$"
+    ],
+    "correctIndex": 0,
+    "answerLatex": "\\frac{1}{2} \\cdot 2.0 \\cdot 5.0^2 + 24 = \\frac{1}{2} \\cdot 2.0 \\cdot v^2",
+    "point": "仕事は運動エネルギーの変化として扱う。正負の符号に注意。",
+    "figure_instruction": "物体に力が加わり速度が変化する様子を示す図"
+  }
+ ],
+[
+  {
     "id": "phys_006",
     "tags": [
       "物理基礎",
