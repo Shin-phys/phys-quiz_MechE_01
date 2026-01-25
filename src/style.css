@@ -408,3 +408,19 @@ canvas {
   font-size: 1.2rem;
   cursor: pointer;
 }
+
+/* Text Highlighter */
+.highlight {
+  background-color: #fefcbf; /* yellow-200 */
+  border-bottom: 2px solid #ecc94b; /* yellow-400 */
+  cursor: pointer;
+}
+
+/* Handwritten Image in Review */
+.review-drawing-img {
+  max-width: 100%;
+  border: 1px dashed #cbd5e0;
+  border-radius: 8px;
+  background-color: #fff;
+  margin-top: 12px;
+}

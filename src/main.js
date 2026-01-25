@@ -242,28 +242,22 @@ function handleChoice(selectedIndex, btnElement, isConfirmed = false) {
 
   const q = state.questions[state.currentQuestionIndex];
 
-  // Prevent changing answer in Test mode if already answered?
-  // Spec implies "Confirm action -> Next". So if we are back, maybe we can edit?
-  // Let's assume once confirmed, it moves next. If we came back, we can change it?
-  // For simplicity: Update answer entry.
-
   const isCorrect = selectedIndex === q.correctIndex;
+
+  // Capture current drawing
+  const drawingData = dom.canvas.toDataURL();
 
   state.answers[q.id] = {
     isCorrect,
     selectedIndex,
-    timestamp: Date.now()
+    timestamp: Date.now(),
+    drawingData: drawingData
   };
 
   if (state.mode === 'practice') {
     showFeedbackOverlay(isCorrect, () => {
       renderExplanation(q);
       dom.feedbackArea.classList.remove('hidden');
-      // Auto next after feedback? Spec says "Instant indicator -> Next". 
-      // BUT also says "Bottom: Answer & Explanation".
-      // Re-interpreting: Flash indicator, then STAY on page with explanation shown?
-      // Or Flash indicator, NEXT question. User must click back to see explanation.
-      // Let's go with: Flash -> Next.
       setTimeout(() => nextQuestion(), 200);
     });
   } else {
@@ -342,6 +336,15 @@ function showResults() {
       content.innerHTML += `<div style="margin-top:4px;">正解式: ${renderMath(q.answerLatex)}</div>`;
     }
     item.appendChild(content);
+
+    // Show handwritten notes if available
+    if (ans && ans.drawingData) {
+      const img = document.createElement('img');
+      img.src = ans.drawingData;
+      img.className = 'review-drawing-img';
+      img.alt = 'Handwritten notes';
+      item.appendChild(img);
+    }
 
     // Error Analysis Tags for incorrect answers
     if (!isCorrect) {
@@ -451,6 +454,36 @@ function setupEventListeners() {
     dom.resultsScreen.classList.add('hidden');
     dom.startScreen.classList.remove('hidden');
   };
+
+  // Text Highlighting
+  dom.questionText.addEventListener('mouseup', handleHighlight);
+}
+
+function handleHighlight() {
+  const selection = window.getSelection();
+  if (selection.isCollapsed) return;
+
+  const range = selection.getRangeAt(0);
+
+  // Check if selection is within the question text area
+  if (!dom.questionText.contains(range.commonAncestorContainer)) return;
+
+  try {
+    const span = document.createElement('span');
+    span.className = 'highlight';
+    span.title = 'Click to remove highlight';
+    span.onclick = function (e) {
+      e.stopPropagation(); // Prevent re-triggering selection logic
+      const parent = this.parentNode;
+      while (this.firstChild) parent.insertBefore(this.firstChild, this);
+      parent.removeChild(this);
+    };
+
+    range.surroundContents(span);
+    selection.removeAllRanges();
+  } catch (e) {
+    console.warn('Highlighting failed (likely crossing element boundaries):', e);
+  }
 }
 
 function updateToolUI(activeId) {
